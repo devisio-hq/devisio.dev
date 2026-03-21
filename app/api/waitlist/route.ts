@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
         contactResult.error.message
           ?.toLowerCase()
           .includes("already exists") ||
-        contactResult.error.name === "already_exists"
+        (contactResult.error.name as string) === "already_exists"
 
       if (!isDuplicate) {
         console.error("Resend contacts error:", contactResult.error)
@@ -56,21 +56,21 @@ export async function POST(req: NextRequest) {
     await resend.emails.send({
       from:
         process.env.NODE_ENV === "production"
-          ? "noreply@artizen.fr"
+          ? "noreply@devisio.fr"
           : "onboarding@resend.dev",
       to: email,
-      subject: "Tu es sur la liste Artizen !",
+      subject: "Tu es sur la liste Devisio !",
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 24px;">
           <h1 style="color: #f97316; font-size: 24px; margin-bottom: 16px;">
-            Bienvenue sur la liste Artizen !
+            Bienvenue sur la liste Devisio !
           </h1>
           <p style="color: #111827; font-size: 16px; line-height: 1.6;">
             Tu es bien inscrit(e) sur la liste d'accès anticipé.
             On te contacte en premier dès le lancement.
           </p>
           <p style="color: #6b7280; font-size: 14px; margin-top: 24px;">
-            — L'équipe Artizen
+            — L'équipe Devisio
           </p>
         </div>
       `,
