@@ -1,5 +1,5 @@
 import { z } from "zod"
 
 export const waitlistSchema = z.object({
-  email: z.email("Invalid email address"),
+  email: z.email("Adresse email invalide"),
 })
