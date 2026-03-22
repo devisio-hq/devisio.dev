@@ -63,10 +63,10 @@ export default function PolitiqueConfidentialite() {
               Conformément au RGPD, vous disposez d&apos;un droit d&apos;accès, de rectification et de suppression de
               vos données. Pour exercer ces droits, contactez-nous à{" "}
               <a
-                href="mailto:contact@devisio.fr"
+                href="mailto:s3bc40@gmail.com"
                 className="text-[var(--color-primary)] hover:underline"
               >
-                contact@devisio.fr
+                s3bc40@gmail.com
               </a>
               .
             </p>

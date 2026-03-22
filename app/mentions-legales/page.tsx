@@ -22,10 +22,10 @@ export default function MentionsLegales() {
             <p>
               Contact :{" "}
               <a
-                href="mailto:contact@devisio.fr"
+                href="mailto:s3bc40@gmail.com"
                 className="text-[var(--color-primary)] hover:underline"
               >
-                contact@devisio.fr
+                s3bc40@gmail.com
               </a>
             </p>
           </div>
