@@ -5,9 +5,9 @@ Pre-launch waitlist landing page for Devisio.
 Devisio is a voice-first quote generation SaaS for French tradespeople (artisans).
 Single goal of this repo: capture emails for the waitlist before product launch.
 
-GitHub: devisio-hq/devisio.fr
+GitHub: devisio-hq/devisio.dev
 Deployed on: Vercel
-Domain: devisio.fr (to purchase after first deploy)
+Domain: devisio.dev
 
 ## Go-to-market
 Initial launch: local word-of-mouth in the Landes region, France.

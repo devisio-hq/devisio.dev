@@ -1,6 +1,6 @@
-# devisio.fr
+# devisio.dev
 
-Pre-launch waitlist landing page for [Devisio](https://devisio.fr) — a voice-first quote generation SaaS for French tradespeople (artisans).
+Pre-launch waitlist landing page for [Devisio](https://devisio.dev) — a voice-first quote generation SaaS for French tradespeople (artisans).
 
 Single goal: capture emails before launch.
 
@@ -67,4 +67,4 @@ Both are required. The API route returns a 500 if `RESEND_AUDIENCE_ID` is missin
 Deployed on Vercel. Push to `main` triggers a production deploy.
 Set env vars in the Vercel project settings before the first deploy.
 
-Domain: `devisio.fr` (to be configured after first deploy).
+Domain: `devisio.dev`.
