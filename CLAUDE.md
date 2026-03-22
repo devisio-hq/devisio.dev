@@ -40,16 +40,30 @@ components/sections/   → hero.tsx, social-proof.tsx, demo-flow.tsx, early-acce
 components/ui/         → shadcn generated + waitlist-form.tsx (shared)
 lib/                   → resend.ts (singleton), validations.ts (zod schema), utils.ts (cn helper)
 app/api/waitlist/      → POST route handler
+app/mentions-legales/          → legal notice page
+app/politique-confidentialite/ → privacy policy page
 
 ## Architecture rules
 - Mobile first on every component — target users are on phone
 - Light mode only — no dark mode, no next-themes
-- No navbar links — logo text "Devisio" in orange only
+- Navbar: logo text "Devisio" in orange, links to / — no other nav links
 - Single CTA, single goal: email capture
 - Shared form logic lives in components/ui/waitlist-form.tsx
 - No HTML <form> tags — use div + onClick handlers
 - API route validates with Zod before calling Resend
 - Env vars: RESEND_API_KEY, RESEND_AUDIENCE_ID — never hardcoded
+
+## Waitlist API — duplicate handling
+Resend's contacts.create is an upsert: it returns 200 with no error even for existing emails.
+To avoid sending duplicate confirmation emails, the route calls resend.contacts.list first
+and returns { success: true } early if the email is already in the audience.
+Do NOT rely on contactResult.error to detect duplicates — it will always be null.
+
+## Confirmation email
+Full branded HTML email (table-based layout for email client compatibility).
+Structure: orange header with "Devisio" logo → body with pitch + 3 feature cards → footer with legal links.
+French copy. Framing: "3 devis offerts pour tester" — NOT "free forever".
+Source: app/api/waitlist/route.ts (inline html string passed to resend.emails.send).
 
 ## Landing page sections (in order)
 1. Hero         → badge animé + H1 + sous-titre + formulaire email + mockup mobile
@@ -67,7 +81,7 @@ Correct framing: "3 devis offerts pour tester".
 - No dark mode
 - No pricing section on landing
 - No authentication
-- No navbar links
+- No navbar nav links (logo linking to / is fine)
 - No HTML form tags
 - Magic UI and Motion Primitives via copy-paste only
 - Vercel deployment only (no AWS for landing)

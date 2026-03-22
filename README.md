@@ -10,7 +10,7 @@ Single goal: capture emails before launch.
 - **Tailwind CSS v4** — tokens in `app/globals.css`, no `tailwind.config.ts`
 - **shadcn/ui** — `components/ui/` (button, input, waitlist-form)
 - **framer-motion** — mount animations (hero H1/subtitle) + scroll animations (stats stagger)
-- **Resend** — email capture + confirmation email via `/api/waitlist`
+- **Resend** — email capture + HTML confirmation email via `/api/waitlist`
 - **Zod** — request validation in the API route
 - **Vercel** — deployment target
 
@@ -18,14 +18,16 @@ Single goal: capture emails before launch.
 
 ```
 app/
-  layout.tsx              # Geist font, SEO metadata
-  page.tsx                # Assembles all sections
-  globals.css             # Color tokens + Tailwind theme
-  api/waitlist/route.ts   # POST — validates email, adds to Resend audience, sends confirmation
+  layout.tsx                        # Geist font, SEO metadata
+  page.tsx                          # Assembles all sections
+  globals.css                       # Color tokens + Tailwind theme
+  api/waitlist/route.ts             # POST — validates, deduplicates, adds to Resend audience, sends confirmation
+  mentions-legales/page.tsx         # Legal notice page
+  politique-confidentialite/page.tsx # Privacy policy page
 
 components/
   layout/
-    navbar.tsx            # Sticky, logo only
+    navbar.tsx            # Sticky, logo links to /
     footer.tsx            # Mentions légales + Politique de confidentialité
   sections/
     hero.tsx              # Badge + H1 + form + phone mockup
@@ -42,6 +44,16 @@ lib/
   validations.ts          # Zod schema
   utils.ts                # cn() helper (clsx + tailwind-merge)
 ```
+
+## Waitlist API
+
+`POST /api/waitlist` — accepts `{ email }`:
+
+1. Validates with Zod
+2. Checks Resend audience for duplicates (Resend upserts silently — no error on re-submit)
+3. If already registered → returns `{ success: true }` without sending another email
+4. Creates contact in Resend audience
+5. Sends a branded HTML confirmation email (table-based, email-client compatible)
 
 ## Local setup
 
