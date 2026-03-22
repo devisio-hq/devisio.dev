@@ -56,7 +56,7 @@ export async function POST(req: NextRequest) {
     await resend.emails.send({
       from:
         process.env.NODE_ENV === "production"
-          ? "noreply@devisio.fr"
+          ? "noreply@devisio.dev"
           : "onboarding@resend.dev",
       to: email,
       subject: "Tu es sur la liste Devisio !",

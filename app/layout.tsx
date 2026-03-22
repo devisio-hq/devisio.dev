@@ -9,7 +9,7 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://devisio.fr"),
+  metadataBase: new URL("https://devisio.dev"),
   title: "Devisio — Ton devis en 2 minutes, à la voix",
   description:
     "Fini les tableaux Excel bricolés. Devisio génère tes devis à la voix en 2 minutes.",
